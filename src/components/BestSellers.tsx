@@ -1,5 +1,6 @@
 import { ProductCard } from "./ProductCard";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { AnimatedSection } from "./AnimatedSection";
 import eclairImg from "@/assets/product-eclair.jpg";
 import macaronsImg from "@/assets/product-macarons.jpg";
 import croissantImg from "@/assets/product-croissant.jpg";
@@ -16,32 +17,36 @@ export const BestSellers = () => {
   return (
     <section className="py-20 px-4 bg-secondary/30">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-            Best Sellers
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Our customers' favorite treats, made fresh daily
-          </p>
-        </div>
+        <AnimatedSection animation="slide-up" delay={0}>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
+              Best Sellers
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our customers' favorite treats, made fresh daily
+            </p>
+          </div>
+        </AnimatedSection>
         
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-4">
-            {products.map((product) => (
-              <CarouselItem key={product.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                <ProductCard {...product} />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
-        </Carousel>
+        <AnimatedSection animation="zoom" delay={200}>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {products.map((product) => (
+                <CarouselItem key={product.name} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <ProductCard {...product} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </AnimatedSection>
       </div>
     </section>
   );

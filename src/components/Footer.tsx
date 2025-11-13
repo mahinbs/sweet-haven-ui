@@ -8,11 +8,18 @@ const footerLinks = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-foreground text-background py-16 px-4">
+    <footer className="bg-black text-background py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
-          <div className="lg:col-span-2">
-            <h3 className="text-3xl font-serif font-bold mb-4">The Bakery</h3>
+          <div className="lg:col-span-2 space-y-4">
+            <a href="/" className="inline-flex">
+              <img
+                src="https://res.cloudinary.com/dknafpppp/image/upload/v1763039285/ChatGPT_Image_Nov_13_2025_02_07_56_PM_eeyu1w.png"
+                alt="Anmol logo"
+                className="h-16 w-auto"
+              />
+            </a>
+            <h3 className="text-3xl font-serif font-bold">The Bakery</h3>
             <p className="text-background/80 mb-6">
               Crafting delicious memories since 1995. Premium baked goods made with love and tradition.
             </p>

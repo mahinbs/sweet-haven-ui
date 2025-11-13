@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom";
+
 interface CategoryCardProps {
   title: string;
   image: string;
+  href: string;
 }
 
-export const CategoryCard = ({ title, image }: CategoryCardProps) => {
+export const CategoryCard = ({ title, image, href }: CategoryCardProps) => {
   return (
-    <div className="group cursor-pointer animate-scale-in">
-      <div className="relative overflow-hidden rounded-2xl bg-card shadow-soft hover:shadow-hover transition-all duration-500 h-72">
+    <Link to={href} className="group block cursor-pointer animate-scale-in focus:outline-none focus-visible:ring-4 focus-visible:ring-[#E93354]/40 rounded-2xl">
+      <div className="relative h-72 overflow-hidden rounded-2xl bg-card shadow-soft transition-all duration-500 group-hover:shadow-hover">
         <img 
           src={image} 
           alt={title}
@@ -17,6 +20,6 @@ export const CategoryCard = ({ title, image }: CategoryCardProps) => {
           <h3 className="text-2xl font-serif font-bold text-white">{title}</h3>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

@@ -1,4 +1,5 @@
 import { ChefHat, Award, Clock, Cake } from "lucide-react";
+import { AnimatedSection } from "./AnimatedSection";
 
 const features = [
   {
@@ -27,32 +28,36 @@ export const WhyChooseUs = () => {
   return (
     <section className="py-20 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-            Why Choose Us
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Quality, tradition, and passion in every bite
-          </p>
-        </div>
+        <AnimatedSection animation="slide-up" delay={0}>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
+              Why Choose Us
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Quality, tradition, and passion in every bite
+            </p>
+          </div>
+        </AnimatedSection>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div 
+            <AnimatedSection 
               key={feature.title}
-              className="text-center p-6 rounded-2xl bg-card shadow-soft hover:shadow-hover transition-all duration-500 animate-scale-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+              animation="zoom"
+              delay={index * 100}
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                <feature.icon className="w-8 h-8 text-primary" />
+              <div className="text-center p-6 rounded-2xl bg-card shadow-soft hover:shadow-hover transition-all duration-500">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+                  <feature.icon className="w-8 h-8 text-primary" />
+                </div>
+                <h3 className="text-xl font-serif font-bold text-foreground mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground">
+                  {feature.description}
+                </p>
               </div>
-              <h3 className="text-xl font-serif font-bold text-foreground mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground">
-                {feature.description}
-              </p>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>

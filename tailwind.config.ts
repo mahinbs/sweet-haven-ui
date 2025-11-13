@@ -126,6 +126,7 @@ export default {
       fontFamily: {
         serif: ["Playfair Display", "serif"],
         sans: ["Inter", "sans-serif"],
+        baloo: ["Baloo 2", "cursive"],
       },
     },
   },

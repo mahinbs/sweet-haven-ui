@@ -126,3 +126,128 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes letter-fall {
+  0% {
+    transform: translateY(-100px) rotate(-10deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.letter-fall {
+  display: inline-block;
+  animation: letter-fall 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotate-in {
+  from {
+    transform: rotate(-5deg) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.scroll-animate {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+}
+
+.scroll-slide-up {
+  transform: translateY(60px);
+}
+
+.scroll-slide-up.visible {
+  animation: slide-up 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.scroll-slide-left {
+  transform: translateX(-60px);
+}
+
+.scroll-slide-left.visible {
+  animation: slide-in-left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.scroll-slide-right {
+  transform: translateX(60px);
+}
+
+.scroll-slide-right.visible {
+  animation: slide-in-right 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.scroll-zoom {
+  transform: scale(0.8);
+}
+
+.scroll-zoom.visible {
+  animation: zoom-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.scroll-rotate {
+  transform: rotate(-5deg) scale(0.9);
+}
+
+.scroll-rotate.visible {
+  animation: rotate-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
