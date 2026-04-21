@@ -8,6 +8,10 @@ import { Header } from "@/components/Header";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CategoryPage from "./pages/CategoryPage";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +25,10 @@ const App = () => (
         <Header />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:productId" element={<ProductDetails />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/collections/:slug" element={<CategoryPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

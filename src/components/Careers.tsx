@@ -7,10 +7,10 @@ export const Careers = () => {
       <div className="pointer-events-none absolute inset-0 translate-y-12 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_transparent_55%)]" />
       <div className="relative mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.05fr,1fr] lg:items-center">
         <div className="order-2 space-y-6 lg:order-1">
-          <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary/80">
+          <p className="text-sm font-medium uppercase tracking-[0.35em] text-primary/80">
             Careers
           </p>
-          <h2 className="font-serif text-4xl font-bold leading-tight md:text-5xl">
+          <h2 className="font-lilita text-4xl font-semibold leading-tight md:text-5xl">
             Join The Sweet Haven Team
           </h2>
           <p className="text-lg text-white/80">

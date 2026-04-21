@@ -30,7 +30,7 @@ export const Hero = () => {
   return (
     <section className="relative h-[600px] md:h-[700px] overflow-hidden">
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-100"
+        className="absolute inset-0 bg-cover bg-center brightness-75"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent" />
@@ -38,7 +38,7 @@ export const Hero = () => {
       
       <div className="relative h-full flex items-center justify-center text-center px-4">
         <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6">
+          <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-lilita font-semibold text-white mb-6">
             <AnimatedText text="Freshly Baked" />
             <br />
             <AnimatedText text="Every Morning" />

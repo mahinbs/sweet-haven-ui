@@ -1,29 +1,26 @@
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLocation } from "react-router-dom";
 
 const navItems = [
-  { label: "/HOME", href: "#" },
-  { label: "ABOUT", href: "#" },
-  { label: "PRODUCTS", href: "#" },
-  { label: "EXPORT", href: "#" },
-  { label: "NEWSROOM", href: "#" },
-  { label: "PEOPLE", href: "#" },
-  { label: "INVESTORS", href: "#" },
-  { label: "CONTACT", href: "#" },
+  { label: "HOME", href: "/" },
+  { label: "ABOUT", href: "/about" },
+  { label: "PRODUCTS", href: "/products" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 export const Header = () => {
+  const { pathname } = useLocation();
   return (
     <header className="shadow-soft font-baloo">
-      <div className="h-3 w-full bg-[#E93354]" />
       <div className="bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
-          <div className="flex items-center gap-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-2">
+          <div className="flex justify-between w-full items-center gap-6">
             <a href="/" className="flex items-center gap-3">
               <img
-                src="https://res.cloudinary.com/dknafpppp/image/upload/v1763039285/ChatGPT_Image_Nov_13_2025_02_07_56_PM_eeyu1w.png"
-                alt="Anmol logo"
-                className="h-16 w-auto md:h-20"
+                src="/logo.png"
+                alt="Honey Gold logo"
+                className="h-10 w-auto md:h-14"
               />
             </a>
             <nav className="hidden items-center gap-6 lg:flex">
@@ -32,11 +29,12 @@ export const Header = () => {
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    "text-base font-extrabold uppercase tracking-wide transition-colors text-[#111]",
-                    item.label === "/HOME" ? "text-[#E93354]" : "text-[#111]",
-                    "hover:text-[#E93354]",
+                    "text-base font-extrabold uppercase tracking-wide transition-colors text-[#111] hover:text-[#E93354]",
                   )}
                 >
+                  <span className="text-[#E93354]">
+                    {item.href === pathname ? "/" : ""}
+                  </span>
                   {item.label}
                 </a>
               ))}
@@ -44,8 +42,8 @@ export const Header = () => {
           </div>
 
           <div className="ml-auto flex items-center gap-6">
-            <div className="hidden h-24 w-16 -skew-y-[6deg] items-center justify-center rounded-b-lg bg-gradient-to-b from-[#E93354] to-[#1E3A8A] text-white shadow-md md:flex">
-              <div className="flex flex-col items-center justify-center gap-1 text-center text-[0.62rem] font-semibold leading-tight">
+            {/* <div className="hidden h-24 w-16 -skew-y-[6deg] items-center justify-center rounded-b-lg bg-gradient-to-b from-[#E93354] to-[#1E3A8A] text-white shadow-md md:flex">
+              <div className="flex flex-col items-center justify-center gap-1 text-center text-[0.62rem] font-medium leading-tight">
                 <span className="uppercase">Great</span>
                 <span className="uppercase">Place</span>
                 <span className="uppercase">To</span>
@@ -53,7 +51,7 @@ export const Header = () => {
                 <span className="text-[0.55rem] uppercase text-white/80">Certified</span>
                 <span className="text-[0.55rem] uppercase text-white/70">India</span>
               </div>
-            </div>
+            </div> */}
             <button
               type="button"
               className={cn(
@@ -70,4 +68,3 @@ export const Header = () => {
     </header>
   );
 };
-

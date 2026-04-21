@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -13,6 +14,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Google Sans", "sans-serif"],
+        lilita: ["Lilita One", "sans-serif"],
+        serif: ["Lilita One", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -123,12 +129,7 @@ export default {
         "slide-in": "slide-in 0.5s ease-out",
         "scale-in": "scale-in 0.4s ease-out",
       },
-      fontFamily: {
-        serif: ["Playfair Display", "serif"],
-        sans: ["Inter", "sans-serif"],
-        baloo: ["Baloo 2", "cursive"],
-      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

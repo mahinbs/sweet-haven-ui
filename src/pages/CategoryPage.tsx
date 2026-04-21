@@ -3,7 +3,7 @@ import { categories } from "@/data/categories";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
 const filterButtonBase =
-  "rounded-full border px-5 py-2 text-sm font-semibold transition-colors duration-200 hover:border-[#E93354] hover:text-[#E93354]";
+  "rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-200 hover:border-[#E93354] hover:text-[#E93354]";
 
 export const CategoryPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -18,10 +18,10 @@ export const CategoryPage = () => {
       <section className="bg-gradient-to-r from-[#FFE8CF] via-[#FFF4E6] to-white py-16">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 text-center md:flex-row md:text-left">
           <AnimatedSection animation="slide-left" delay={0} className="space-y-6 md:w-1/2">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#E93354]/80">Our Collection</p>
+            <p className="text-sm font-medium uppercase tracking-[0.35em] text-[#E93354]/80">Our Collection</p>
             <h1 className="text-4xl font-baloo font-extrabold text-[#111] md:text-5xl">{category.headline}</h1>
             <p className="text-lg text-[#5F4B3C]">{category.description}</p>
-            <button className="inline-flex items-center justify-center rounded-full bg-[#E93354] px-6 py-3 font-baloo text-lg font-bold uppercase tracking-wide text-white shadow-md transition-transform duration-200 hover:scale-105">
+            <button className="inline-flex items-center justify-center rounded-full bg-[#E93354] px-6 py-3 font-baloo text-lg font-semibold uppercase tracking-wide text-white shadow-md transition-transform duration-200 hover:scale-105">
               Explore All
             </button>
           </AnimatedSection>
@@ -60,10 +60,10 @@ export const CategoryPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/5 to-transparent" />
                   </div>
                   <div className="flex flex-1 flex-col gap-3 px-6 py-6 text-left">
-                    <h3 className="text-2xl font-baloo font-bold text-[#111]">{product.name}</h3>
+                    <h3 className="text-2xl font-baloo font-semibold text-[#111]">{product.name}</h3>
                     <p className="text-sm text-[#6C5A4A]">{product.description}</p>
                     {product.price && (
-                      <span className="mt-auto text-base font-semibold text-[#E93354]">{product.price}</span>
+                      <span className="mt-auto text-base font-medium text-[#E93354]">{product.price}</span>
                     )}
                   </div>
                 </div>

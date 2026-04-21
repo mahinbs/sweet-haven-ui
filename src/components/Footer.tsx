@@ -14,12 +14,11 @@ export const Footer = () => {
           <div className="lg:col-span-2 space-y-4">
             <a href="/" className="inline-flex">
               <img
-                src="https://res.cloudinary.com/dknafpppp/image/upload/v1763039285/ChatGPT_Image_Nov_13_2025_02_07_56_PM_eeyu1w.png"
-                alt="Anmol logo"
+                src="/logo.png"
+                alt="Honey Gold logo"
                 className="h-16 w-auto"
               />
             </a>
-            <h3 className="text-3xl font-serif font-bold">The Bakery</h3>
             <p className="text-background/80 mb-6">
               Crafting delicious memories since 1995. Premium baked goods made with love and tradition.
             </p>
@@ -38,7 +37,7 @@ export const Footer = () => {
           
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h4 className="font-serif font-bold text-lg mb-4">{title}</h4>
+              <h4 className="font-lilita font-semibold text-lg mb-4">{title}</h4>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link}>
@@ -69,7 +68,7 @@ export const Footer = () => {
           </div>
           
           <div className="text-center text-background/60 text-sm">
-            © 2024 The Bakery. All rights reserved.
+            © 2024 Honey Gold. All rights reserved.
           </div>
         </div>
       </div>

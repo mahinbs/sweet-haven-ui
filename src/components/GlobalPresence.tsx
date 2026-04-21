@@ -57,27 +57,27 @@ export const GlobalPresence = () => {
     <section ref={sectionRef} className="bg-white py-24">
       <div className="mx-auto max-w-6xl space-y-6 px-4 text-center">
         <AnimatedSection animation="slide-up" delay={0}>
-          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground">Spreading Our Wings To</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-brown-dark/70">Global Presence</p>
         </AnimatedSection>
         <AnimatedSection animation="zoom" delay={200}>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
-            <span className="block text-6xl md:text-7xl text-[#E93354]">{count}</span>
+          <h2 className="font-lilita text-4xl font-semibold text-foreground md:text-5xl">
+            <span className="block text-6xl text-[#E93354] md:text-7xl">{count}</span>
             Countries
           </h2>
         </AnimatedSection>
         <AnimatedSection animation="fade" delay={400}>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
             Our handcrafted delights travel far and wide, reaching dessert lovers across the globe.
           </p>
         </AnimatedSection>
       </div>
       <AnimatedSection animation="zoom" delay={600}>
-        <div className="relative mt-16">
+        <div className="relative mx-auto mt-16 max-w-6xl rounded-3xl border border-border/60 bg-cream/40 p-6 shadow-[var(--shadow-soft)]">
           <div className="pointer-events-none absolute inset-x-0 -top-8 h-48 bg-[#E93354]/10 blur-3xl" aria-hidden />
           <img
             src="https://res.cloudinary.com/dknafpppp/image/upload/v1763039490/360_F_87048573_6xUujMh3gPspzBh2uspdMPrKQA68JkVF_wbjg5i.jpg"
             alt="World map highlighting our reach"
-            className="block w-full object-cover"
+            className="block w-full object-contain max-h-[400px]"
             loading="lazy"
           />
         </div>

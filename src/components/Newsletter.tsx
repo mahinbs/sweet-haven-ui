@@ -3,22 +3,23 @@ import { Input } from "@/components/ui/input";
 
 export const Newsletter = () => {
   return (
-    <section className="py-20 px-4 bg-primary">
-      <div className="max-w-4xl mx-auto text-center animate-fade-in">
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary-foreground mb-4">
+    <section className="bg-primary px-4 py-24">
+      <div className="mx-auto max-w-4xl rounded-3xl border border-white/15 bg-white/5 p-8 text-center backdrop-blur-sm animate-fade-in md:p-12">
+        <p className="mb-3 text-xs uppercase tracking-[0.3em] text-primary-foreground/80">Newsletter</p>
+        <h2 className="mb-4 font-lilita text-4xl font-semibold text-primary-foreground md:text-5xl">
           Stay Sweet with Us
         </h2>
-        <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+        <p className="mx-auto mb-8 max-w-2xl text-lg text-primary-foreground/90">
           Subscribe to our newsletter for exclusive offers, new product launches, and baking tips
         </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-          <Input 
-            type="email" 
+
+        <div className="mx-auto flex max-w-lg flex-col gap-4 sm:flex-row">
+          <Input
+            type="email"
             placeholder="Enter your email"
-            className="bg-primary-foreground border-0 flex-1"
+            className="flex-1 border-0 bg-primary-foreground"
           />
-          <Button variant="secondary" size="lg" className="sm:w-auto">
+          <Button variant="secondary" size="lg" className="rounded-full sm:w-auto">
             Subscribe
           </Button>
         </div>

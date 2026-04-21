@@ -15,19 +15,20 @@ const products = [
 
 export const BestSellers = () => {
   return (
-    <section className="py-20 px-4 bg-secondary/30">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-secondary/20 px-4 py-24">
+      <div className="mx-auto max-w-7xl">
         <AnimatedSection animation="slide-up" delay={0}>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
+          <div className="mb-12 text-center">
+            <p className="mb-3 text-xs uppercase tracking-[0.3em] text-brown-dark/70">Signature Favorites</p>
+            <h2 className="mb-4 font-lilita text-4xl font-semibold text-foreground md:text-5xl">
               Best Sellers
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
               Our customers' favorite treats, made fresh daily
             </p>
           </div>
         </AnimatedSection>
-        
+
         <AnimatedSection animation="zoom" delay={200}>
           <Carousel
             opts={{
@@ -43,8 +44,8 @@ export const BestSellers = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
+            <CarouselPrevious className="hidden border-brown-warm/30 bg-white text-brown-dark md:flex" />
+            <CarouselNext className="hidden border-brown-warm/30 bg-white text-brown-dark md:flex" />
           </Carousel>
         </AnimatedSection>
       </div>
