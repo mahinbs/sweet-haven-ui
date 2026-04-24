@@ -64,7 +64,7 @@ const About = () => {
             <span className="inline-flex items-center rounded-full bg-pink-light px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-brown-dark">
               ABOUT US
             </span>
-            <h1 className="font-lilita text-4xl leading-tight text-brown-dark md:text-6xl">
+            <h1 className="font-lilita text-4xl leading-tight text-brown-dark md:text-6xl font-extrabold">
               Honey Gold Bakers Pvt. Ltd.
             </h1>
             <p className="max-w-xl text-base text-brown-dark/80 md:text-lg">
@@ -121,7 +121,7 @@ const About = () => {
                       <Icon className="h-6 w-6" />
                     </div>
                   </div>
-                  <h3 className="font-lilita text-2xl text-brown-dark">{card.title}</h3>
+                  <h3 className="font-lilita text-2xl text-brown-dark font-bold">{card.title}</h3>
                   <p className="mt-2 text-brown-dark/70">{card.description}</p>
                 </article>
               </AnimatedSection>
@@ -156,7 +156,7 @@ const About = () => {
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_1.2fr]">
           <AnimatedSection animation="slide-left" className="space-y-4">
             <p className="text-xs uppercase tracking-[0.22em] text-brown-dark/70">About Honey Gold Bakers</p>
-            <h2 className="font-lilita text-4xl text-brown-dark md:text-5xl">Built for taste, purity, and trust.</h2>
+            <h2 className="font-lilita text-4xl text-brown-dark md:text-5xl font-bold">Built for taste, purity, and trust.</h2>
             <p className="max-w-md text-brown-dark/75">
               Our product range includes breads, buns, rusk, cakes, biscuits, and customized bakery items - all made
               using premium ingredients and advanced baking technology.
@@ -192,7 +192,7 @@ const About = () => {
               <Target className="h-6 w-6" />
             </div>
             <p className="text-xs uppercase tracking-[0.18em] text-brown-dark/70">Mission</p>
-            <h3 className="mt-2 font-lilita text-3xl text-brown-dark">Fresh. Hygienic. High Quality.</h3>
+            <h3 className="mt-2 font-lilita text-3xl text-brown-dark font-bold">Fresh. Hygienic. High Quality.</h3>
             <p className="mt-4 text-brown-dark/80">
               To provide fresh, hygienic, and high-quality bakery products that bring joy, convenience, and great
               taste to every household.
@@ -211,7 +211,7 @@ const About = () => {
               <Sparkles className="h-6 w-6" />
             </div>
             <p className="text-xs uppercase tracking-[0.18em] text-cream/75">Vision</p>
-            <h3 className="mt-2 font-lilita text-3xl text-cream">Trusted across India.</h3>
+            <h3 className="mt-2 font-lilita text-3xl text-cream font-bold">Trusted across India.</h3>
             <p className="mt-4 text-cream/85">
               To become one of India&apos;s most trusted and loved bakery brands, known for unmatched quality,
               innovation, and taste.
@@ -228,7 +228,7 @@ const About = () => {
           animation="rotate"
           className="mx-auto max-w-6xl rounded-[2.2rem] bg-gradient-to-r from-pink-light via-beige to-cream p-8 text-center shadow-[var(--shadow-hover)] md:p-12"
         >
-          <h3 className="font-lilita text-3xl text-brown-dark md:text-5xl">Ready for retail and bulk supply.</h3>
+          <h3 className="font-lilita text-3xl text-brown-dark md:text-5xl font-bold">Ready for retail and bulk supply.</h3>
           <p className="mx-auto mt-4 max-w-2xl text-brown-dark/80">
             Connect with us for distribution, wholesale orders, and consistent quality delivery.
           </p>

@@ -77,7 +77,7 @@ const Products = () => {
             <span className="inline-flex items-center rounded-full bg-pink-light px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-brown-dark">
               Products Listing
             </span>
-            <h1 className="font-lilita text-4xl text-brown-dark md:text-6xl">Explore Our Bakery Range</h1>
+            <h1 className="font-lilita text-4xl text-brown-dark md:text-6xl font-extrabold">Explore Our Bakery Range</h1>
             <p className="max-w-2xl text-brown-dark/80 md:text-lg">
               Discover breads, buns, cakes, biscuits, and custom creations with quick filters and smart sorting.
             </p>
@@ -144,7 +144,7 @@ const Products = () => {
         <div className="mx-auto max-w-7xl">
           {filteredProducts.length === 0 ? (
             <AnimatedSection animation="fade" className="rounded-[1.6rem] border border-dashed border-brown-warm/35 bg-white/80 p-10 text-center shadow-[var(--shadow-soft)]">
-              <h2 className="font-lilita text-3xl text-brown-dark">No products found</h2>
+              <h2 className="font-lilita text-3xl text-brown-dark font-bold">No products found</h2>
               <p className="mt-2 text-brown-dark/70">Try changing your search, category, or sort preferences.</p>
             </AnimatedSection>
           ) : (
@@ -163,7 +163,7 @@ const Products = () => {
                       </span>
                     </div>
                     <div className="flex flex-1 flex-col p-5">
-                      <h3 className="font-lilita text-2xl text-brown-dark">{product.name}</h3>
+                      <h3 className="font-lilita text-2xl text-brown-dark font-bold">{product.name}</h3>
                       <p className="mt-2 text-sm text-brown-dark/70">{product.description}</p>
                       <div className="mt-5 flex items-center justify-between">
                         <p className="text-xl font-semibold text-[#E93354]">{product.price}</p>

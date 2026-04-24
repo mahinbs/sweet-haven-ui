@@ -31,7 +31,7 @@ export const WhyChooseUs = () => {
         <AnimatedSection animation="slide-up" delay={0}>
           <div className="mb-12 text-center">
             <p className="mb-3 text-xs uppercase tracking-[0.3em] text-brown-dark/70">Why Choose Us</p>
-            <h2 className="mb-4 font-lilita text-4xl font-semibold text-foreground md:text-5xl">
+            <h2 className="mb-4 font-lilita text-4xl font-bold text-foreground md:text-5xl">
               Why Choose Us
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
@@ -51,7 +51,7 @@ export const WhyChooseUs = () => {
                 <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                   <feature.icon className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="mb-2 font-lilita text-xl font-semibold text-foreground">
+                <h3 className="mb-2 font-lilita text-xl font-bold text-foreground">
                   {feature.title}
                 </h3>
                 <p className="leading-relaxed text-muted-foreground">

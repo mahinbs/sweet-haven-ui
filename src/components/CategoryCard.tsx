@@ -20,7 +20,7 @@ export const CategoryCard = ({ title, image, href }: CategoryCardProps) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/25 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <h3 className="font-lilita text-2xl font-semibold text-white">{title}</h3>
+          <h3 className="font-lilita text-2xl font-bold text-white">{title}</h3>
           <p className="mt-1 text-xs uppercase tracking-[0.18em] text-white/80">View Products</p>
         </div>
       </div>

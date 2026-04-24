@@ -97,7 +97,7 @@ export const KeyMetrics = () => {
     <section ref={sectionRef} className="bg-cream px-4 py-24">
       <div className="mx-auto mb-10 max-w-7xl text-center">
         <p className="mb-3 text-xs uppercase tracking-[0.3em] text-brown-dark/70">At a Glance</p>
-        <h2 className="font-lilita text-4xl text-foreground md:text-5xl">Our Scale in Numbers</h2>
+        <h2 className="font-lilita text-4xl font-bold text-foreground md:text-5xl">Our Scale in Numbers</h2>
       </div>
       <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl border border-border/60 bg-white shadow-[var(--shadow-soft)]">
         <div className="grid divide-y border-border/60 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-5 lg:divide-x">

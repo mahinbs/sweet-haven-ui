@@ -1,15 +1,12 @@
 import { Hero } from "@/components/Hero";
 import { OurStory } from "@/components/OurStory";
 import { Categories } from "@/components/Categories";
-import { BestSellers } from "@/components/BestSellers";
 import { KeyMetrics } from "@/components/KeyMetrics";
 import { GlobalPresence } from "@/components/GlobalPresence";
-import { WhyChooseUs } from "@/components/WhyChooseUs";
-import { Testimonials } from "@/components/Testimonials";
-import { Newsletter } from "@/components/Newsletter";
-import { Footer } from "@/components/Footer";
+import { CSR } from "@/components/CSR";
 import { Careers } from "@/components/Careers";
 import { GetInTouch } from "@/components/GetInTouch";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -17,14 +14,11 @@ const Index = () => {
       <Hero />
       <OurStory />
       <Categories />
-      <BestSellers />
       <KeyMetrics />
       <GlobalPresence />
-      <WhyChooseUs />
-      <Testimonials />
+      <CSR />
       <Careers />
       <GetInTouch />
-      <Newsletter />
       <Footer />
     </div>
   );

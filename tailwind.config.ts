@@ -16,8 +16,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Google Sans", "sans-serif"],
-        lilita: ["Lilita One", "sans-serif"],
-        serif: ["Lilita One", "sans-serif"],
+        lilita: ["Google Sans", "sans-serif"],
+        serif: ["Google Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

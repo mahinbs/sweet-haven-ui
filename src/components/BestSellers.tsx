@@ -20,7 +20,7 @@ export const BestSellers = () => {
         <AnimatedSection animation="slide-up" delay={0}>
           <div className="mb-12 text-center">
             <p className="mb-3 text-xs uppercase tracking-[0.3em] text-brown-dark/70">Signature Favorites</p>
-            <h2 className="mb-4 font-lilita text-4xl font-semibold text-foreground md:text-5xl">
+            <h2 className="mb-4 font-lilita text-4xl font-bold text-foreground md:text-5xl">
               Best Sellers
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">

@@ -18,7 +18,7 @@ export const ProductCard = ({ name, price, image }: ProductCardProps) => {
         />
       </div>
       <div className="p-6">
-        <h3 className="mb-2 font-lilita text-xl font-semibold text-foreground">{name}</h3>
+        <h3 className="mb-2 font-lilita text-xl font-bold text-foreground">{name}</h3>
         <p className="mb-4 text-2xl font-semibold text-primary">{price}</p>
         <Button
           variant="outline"

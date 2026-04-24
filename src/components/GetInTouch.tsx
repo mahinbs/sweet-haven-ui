@@ -1,73 +1,105 @@
 import { ArrowRight, Factory, Globe2, Truck } from "lucide-react";
+import { Link } from "react-router-dom";
+import { AnimatedSection } from "./AnimatedSection";
 
 const contactOptions = [
   {
-    title: "Honey Gold",
+    title: "Honey Gold Anubhav",
+    label: "GET IN TOUCH",
     description:
       "We welcome students nationwide to come on over and see how we bake happiness into every delicious Honey Gold treat.",
     cta: "Book a Visit",
+    href: "/contact",
     icon: Factory,
+    bgImage: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
   },
   {
     title: "Become a Distributor",
+    label: "PARTNER WITH US",
     description:
-      "Spice up your journey by joining our flavor-packed retail network and becoming part of the Honey Gold Family.",
+      "Spice up your journey by joining our flavor-packed retail network and becoming part of the Honey Gold family.",
     cta: "Apply Now",
+    href: "/contact",
     icon: Truck,
+    bgImage: "https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=800&q=80",
   },
   {
     title: "Export Enquiry",
+    label: "GO GLOBAL",
     description:
-      "If you’re keen on becoming an international distributor and helping us expand our market coverage, we’d love to hear from you.",
+      "If you're keen on becoming an international distributor and helping us expand our market coverage, we'd love to hear from you.",
     cta: "Apply Now",
+    href: "/contact",
     icon: Globe2,
+    bgImage: "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=800&q=80",
   },
 ];
 
 export const GetInTouch = () => {
   return (
-    <section className="bg-white py-20">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 md:px-8">
-        <div className="max-w-2xl">
-          <p className="text-sm font-medium uppercase tracking-[0.35em] text-primary/80">
-            Get in Touch
-          </p>
-          <h2 className="mt-3 text-3xl font-black tracking-tight text-foreground sm:text-4xl md:text-[3rem]">
-            We&apos;re Eager to Hear from You!
-          </h2>
-          <p className="mt-4 text-base text-muted-foreground md:text-lg">
-            Whether you are planning a factory visit or looking to collaborate
-            with us, we are just one message away from creating something
-            delightful together.
-          </p>
-        </div>
+    <section className="bg-[#f7f5f2] py-24 px-4">
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <AnimatedSection animation="slide-up" delay={0}>
+          <div className="mb-14 text-center">
+            <p className="mb-3 text-xs uppercase tracking-[0.35em] text-[#E93354] font-medium">
+              Get in Touch
+            </p>
+            <h2 className="font-lilita text-4xl font-bold text-foreground md:text-5xl">
+              We&apos;re Eager to
+              <br />
+              <span className="text-[#E93354]">Hear from You!</span>
+            </h2>
+            <p className="mt-5 mx-auto max-w-xl text-lg text-muted-foreground">
+              Whether you are planning a factory visit, looking to partner with us, or
+              want to explore global distribution — we are just one message away.
+            </p>
+          </div>
+        </AnimatedSection>
 
-        <div className="grid gap-10 md:grid-cols-3">
-          {contactOptions.map((option) => (
-            <article
-              key={option.title}
-              className="group flex h-full flex-col justify-between rounded-3xl border border-border bg-background/80 p-8 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div>
-                <span className="inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-red-50 text-red-500">
-                  <option.icon className="h-12 w-12" />
-                </span>
-                <h3 className="mt-6 text-2xl font-semibold text-foreground">
-                  {option.title}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-                  {option.description}
-                </p>
+        {/* 3 cards */}
+        <div className="grid gap-6 md:grid-cols-3">
+          {contactOptions.map((option, index) => (
+            <AnimatedSection key={option.title} animation="slide-up" delay={index * 120}>
+              <div className="group relative overflow-hidden rounded-3xl h-[460px] flex flex-col justify-end">
+                {/* Background Image */}
+                <img
+                  src={option.bgImage}
+                  alt={option.title}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+                {/* Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10" />
+                <div className="absolute inset-0 bg-[#E93354]/0 transition-all duration-500 group-hover:bg-[#E93354]/10" />
+
+                {/* Content */}
+                <div className="relative p-8 space-y-3">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#E93354]/20 border border-[#E93354]/30 mb-2">
+                    <option.icon className="h-6 w-6 text-[#E93354]" />
+                  </span>
+                  <p className="text-[#E93354] text-[10px] uppercase tracking-[0.3em] font-medium">
+                    {option.label}
+                  </p>
+                  <h3 className="font-lilita text-2xl font-bold text-white leading-tight">
+                    {option.title}
+                  </h3>
+                  <p className="text-white/65 text-sm leading-relaxed">
+                    {option.description}
+                  </p>
+                  <Link
+                    to={option.href}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-white pt-2 transition-all duration-200 group-hover:text-[#E93354] group-hover:gap-3"
+                  >
+                    {option.cta}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
-              <button className="mt-6 inline-flex items-center justify-start text-sm font-medium text-primary transition-colors duration-200 group-hover:text-primary/80 md:text-base">
-                {option.cta}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </button>
-            </article>
+            </AnimatedSection>
           ))}
         </div>
       </div>
     </section>
   );
 };
-

@@ -39,7 +39,7 @@ const Contact = () => {
             <span className="inline-flex rounded-full bg-pink-light px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-brown-dark">
               Contact Us
             </span>
-            <h1 className="font-lilita text-4xl text-brown-dark md:text-6xl">Let&apos;s Build Something Fresh Together</h1>
+            <h1 className="font-lilita text-4xl font-extrabold text-brown-dark md:text-6xl">Let&apos;s Build Something Fresh Together</h1>
             <p className="max-w-3xl text-brown-dark/80 md:text-lg">
               Connect with Honey Gold Bakers Pvt. Ltd. for product enquiries, distribution, bulk orders, or general
               support.
@@ -71,7 +71,7 @@ const Contact = () => {
       <section className="px-4 pb-24">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_1.25fr]">
           <AnimatedSection animation="slide-left" className="space-y-4 rounded-[1.8rem] bg-brown-dark p-8 text-cream shadow-[var(--shadow-hover)] md:p-10">
-            <h2 className="font-lilita text-3xl md:text-4xl">Partnership Ready</h2>
+            <h2 className="font-lilita text-3xl md:text-4xl font-bold">Partnership Ready</h2>
             <p className="text-cream/85">
               We support retailers, wholesalers, and distributors with timely supply and consistent quality.
             </p>
@@ -89,7 +89,7 @@ const Contact = () => {
 
           <AnimatedSection animation="slide-right" delay={140}>
             <form className="rounded-[1.8rem] border border-brown-warm/15 bg-white p-7 shadow-[var(--shadow-soft)] md:p-9">
-              <h3 className="font-lilita text-3xl text-brown-dark">Send an Enquiry</h3>
+              <h3 className="font-lilita text-3xl text-brown-dark font-bold">Send an Enquiry</h3>
               <p className="mt-2 text-brown-dark/70">Tell us what you need and our team will contact you shortly.</p>
 
               <div className="mt-6 grid gap-4 sm:grid-cols-2">

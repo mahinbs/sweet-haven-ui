@@ -43,7 +43,7 @@ const ProductDetails = () => {
             <span className="inline-flex rounded-full bg-pink-light px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brown-dark">
               {product.categoryTitle}
             </span>
-            <h1 className="font-lilita text-4xl text-brown-dark md:text-6xl">{product.name}</h1>
+            <h1 className="font-lilita text-4xl text-brown-dark md:text-6xl font-extrabold">{product.name}</h1>
             <p className="text-lg text-brown-dark/80">{product.description}</p>
             <p className="text-3xl font-semibold text-[#E93354]">{product.price}</p>
 
@@ -76,7 +76,7 @@ const ProductDetails = () => {
           <div className="flex items-start gap-3">
             <Truck className="mt-1 h-6 w-6 text-pink-light" />
             <div>
-              <h2 className="font-lilita text-3xl">Bulk Orders & Timely Supply</h2>
+              <h2 className="font-lilita text-3xl font-bold">Bulk Orders & Timely Supply</h2>
               <p className="mt-3 max-w-3xl text-cream/85">
                 This product is available for retailers, wholesalers, and distribution partners with consistent quality
                 and delivery support.
@@ -89,7 +89,7 @@ const ProductDetails = () => {
       <section className="px-4 pb-24">
         <div className="mx-auto max-w-7xl">
           <AnimatedSection animation="fade" className="mb-8">
-            <h3 className="font-lilita text-3xl text-brown-dark">Related Products</h3>
+            <h3 className="font-lilita text-3xl text-brown-dark font-bold">Related Products</h3>
           </AnimatedSection>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {relatedProducts.map((item, index) => (

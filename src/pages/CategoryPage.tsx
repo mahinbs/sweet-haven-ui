@@ -60,7 +60,7 @@ export const CategoryPage = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/5 to-transparent" />
                   </div>
                   <div className="flex flex-1 flex-col gap-3 px-6 py-6 text-left">
-                    <h3 className="text-2xl font-baloo font-semibold text-[#111]">{product.name}</h3>
+                    <h3 className="text-2xl font-baloo font-bold text-[#111]">{product.name}</h3>
                     <p className="text-sm text-[#6C5A4A]">{product.description}</p>
                     {product.price && (
                       <span className="mt-auto text-base font-medium text-[#E93354]">{product.price}</span>

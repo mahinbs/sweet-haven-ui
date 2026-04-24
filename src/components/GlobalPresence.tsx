@@ -60,7 +60,7 @@ export const GlobalPresence = () => {
           <p className="text-xs uppercase tracking-[0.3em] text-brown-dark/70">Global Presence</p>
         </AnimatedSection>
         <AnimatedSection animation="zoom" delay={200}>
-          <h2 className="font-lilita text-4xl font-semibold text-foreground md:text-5xl">
+          <h2 className="font-lilita text-4xl font-bold text-foreground md:text-5xl">
             <span className="block text-6xl text-[#E93354] md:text-7xl">{count}</span>
             Countries
           </h2>
