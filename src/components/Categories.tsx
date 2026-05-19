@@ -167,7 +167,7 @@ export const Categories = () => {
           </div>
 
           {/* 2x2 grid for the rest */}
-          <div className="lg:col-span-2 grid grid-cols-2 gap-4">
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {rest.map((cat, i) => (
               <CategoryBlock
                 key={cat.slug}

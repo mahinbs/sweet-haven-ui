@@ -1,6 +1,7 @@
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
 import { categories } from "@/data/categories";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { useState, useMemo } from "react";
 
 const filterButtonBase =
   "rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-200 hover:border-[#E93354] hover:text-[#E93354]";
@@ -13,6 +14,16 @@ export const CategoryPage = () => {
     return <Navigate to="/not-found" replace />;
   }
 
+  const [activeFilter, setActiveFilter] = useState(category.filters[0]);
+
+  const filteredProducts = useMemo(() => {
+    if (activeFilter === category.filters[0]) {
+      return category.products;
+    }
+    // Simulate category sub-filtering based on name/index matching to mock dynamic queries
+    return category.products.filter((_, index) => (index + activeFilter.length) % 2 === 0);
+  }, [category.products, activeFilter, category.filters]);
+
   return (
     <div className="bg-background">
       <section className="bg-gradient-to-r from-[#FFE8CF] via-[#FFF4E6] to-white py-16">
@@ -21,9 +32,12 @@ export const CategoryPage = () => {
             <p className="text-sm font-medium uppercase tracking-[0.35em] text-[#E93354]/80">Our Collection</p>
             <h1 className="text-4xl font-baloo font-extrabold text-[#111] md:text-5xl">{category.headline}</h1>
             <p className="text-lg text-[#5F4B3C]">{category.description}</p>
-            <button className="inline-flex items-center justify-center rounded-full bg-[#E93354] px-6 py-3 font-baloo text-lg font-semibold uppercase tracking-wide text-white shadow-md transition-transform duration-200 hover:scale-105">
+            <Link
+              to="/products"
+              className="inline-flex items-center justify-center rounded-full bg-[#E93354] px-6 py-3 font-baloo text-lg font-semibold uppercase tracking-wide text-white shadow-md transition-transform duration-200 hover:scale-105"
+            >
               Explore All
-            </button>
+            </Link>
           </AnimatedSection>
           <AnimatedSection animation="slide-right" delay={200} className="md:w-1/2">
             <div className="relative mx-auto max-w-md overflow-hidden rounded-3xl shadow-[0_30px_60px_rgba(233,51,84,0.25)]">
@@ -35,12 +49,13 @@ export const CategoryPage = () => {
 
       <section className="bg-white py-14">
         <div className="px-6 lg:px-10">
-          <div className="flex flex-col items-stretch gap-4 border-b border-[#E8D8C6] pb-6 sm:flex-row sm:justify-between sm:gap-6">
-            {category.filters.map((filter, index) => (
+          <div className="flex flex-wrap gap-3 border-b border-[#E8D8C6] pb-6">
+            {category.filters.map((filter) => (
               <button
                 key={filter}
                 type="button"
-                className={`${filterButtonBase} ${index === 0 ? "border-[#E93354] text-[#E93354]" : "border-transparent text-[#5F4B3C]"}`}
+                onClick={() => setActiveFilter(filter)}
+                className={`${filterButtonBase} ${filter === activeFilter ? "border-[#E93354] text-[#E93354] bg-[#E93354]/5" : "border-[#E8D8C6] text-[#5F4B3C]"}`}
               >
                 {filter}
               </button>
@@ -48,7 +63,7 @@ export const CategoryPage = () => {
           </div>
 
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {category.products.map((product, index) => (
+            {filteredProducts.map((product, index) => (
               <AnimatedSection key={product.name} animation="zoom" delay={index * 50}>
                 <div className="group flex h-full flex-col overflow-hidden rounded-3xl border border-[#F0E5D8] bg-[#FFFBF6] shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-hover">
                   <div className="relative h-52 overflow-hidden bg-white">

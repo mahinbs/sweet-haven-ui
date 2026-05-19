@@ -1,33 +1,25 @@
-import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Instagram, Mail, Phone, MapPin, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const footerLinks = {
   Products: [
     { label: "All Products", href: "/products" },
     { label: "Cakes", href: "/products?category=cakes" },
-    { label: "Biscuits", href: "/products?category=biscuits" },
     { label: "Cookies", href: "/products?category=cookies" },
-    { label: "Rusks", href: "/products?category=rusks" },
   ],
   Company: [
     { label: "About Us", href: "/about" },
-    { label: "Our Story", href: "/about" },
-    { label: "Careers", href: "/contact" },
-    { label: "Contact", href: "/contact" },
+    { label: "Careers", href: "/careers" },
   ],
   "Get in Touch": [
-    { label: "General Enquiries", href: "/contact" },
-    { label: "Become a Distributor", href: "/contact" },
-    { label: "Book a Site Visit", href: "/contact" },
-    { label: "Export Enquiry", href: "/contact" },
+    { label: "Contact Us", href: "/contact" },
   ],
 };
 
 const socials = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Facebook, href: "https://www.facebook.com/share/1GUrio2Tao/ ", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/honey_gold.bakers?igsh=OGppNnIwYTB0Z3Az ", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/honey-gold-bakers/ ", label: "LinkedIn" },
 ];
 
 export const Footer = () => {
@@ -42,7 +34,7 @@ export const Footer = () => {
               <img
                 src="/logo.png"
                 alt="Honey Gold logo"
-                className="h-14 w-auto brightness-200"
+                className="h-14 w-auto"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
                 }}
@@ -98,23 +90,17 @@ export const Footer = () => {
         <div className="mx-auto max-w-7xl px-6 py-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex flex-wrap gap-6">
-              <a href="tel:+917428787694" className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200">
+              <a href="tel:+9118008898750" className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200">
                 <Phone className="h-4 w-4 text-[#E93354]" />
-                +91 74287 87694
+                18008898750
               </a>
-              <a href="mailto:info@honeygoldbakers.com" className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200">
+              <a href="mailto:contactus@honeygoldbakers.com" className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200">
                 <Mail className="h-4 w-4 text-[#E93354]" />
-                info@honeygoldbakers.com
+                contactus@honeygoldbakers.com
               </a>
               <span className="flex items-center gap-2 text-white/50 text-sm">
-                <MapPin className="h-4 w-4 text-[#E93354]" />
-                India
+                <MapPin className="h-4 w-4 text-[#E93354]" />Aligarh, Uttar Pradesh
               </span>
-            </div>
-            <div className="flex flex-wrap gap-4 text-xs text-white/35">
-              <a href="#" className="hover:text-white/70 transition-colors">Disclaimer</a>
-              <a href="#" className="hover:text-white/70 transition-colors">Terms & Conditions</a>
-              <a href="#" className="hover:text-white/70 transition-colors">Privacy Policy</a>
             </div>
           </div>
         </div>

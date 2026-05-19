@@ -51,7 +51,7 @@ export const Careers = () => {
             </div>
 
             <Button asChild size="lg" className="bg-[#E93354] hover:bg-[#c72944] text-white rounded-full group w-fit border-0">
-              <Link to="/contact">
+              <Link to="/careers">
                 View Openings
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>

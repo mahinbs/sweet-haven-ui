@@ -2,10 +2,9 @@ import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 
 export const SocialBanner = () => {
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Youtube, href: "#", label: "YouTube" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Facebook, href: "https://www.facebook.com/share/1GUrio2Tao/", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/honey_gold.bakers?igsh=OGppNnIwYTB0Z3Az ", label: "Instagram" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/honey-gold-bakers/ ", label: "LinkedIn" },
   ];
 
   return (

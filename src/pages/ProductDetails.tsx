@@ -4,6 +4,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { allProducts } from "@/data/products";
+import { toast } from "@/hooks/use-toast";
 
 const ProductDetails = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -59,7 +60,17 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Button className="rounded-full px-8">Add to Enquiry</Button>
+              <Button
+                className="rounded-full px-8"
+                onClick={() =>
+                  toast({
+                    title: "Enquiry Added",
+                    description: `Added "${product.name}" to your enquiry list.`,
+                  })
+                }
+              >
+                Add to Enquiry
+              </Button>
               <Link
                 to="/contact"
                 className="inline-flex items-center rounded-full border border-brown-warm/30 px-8 py-3 text-sm font-semibold text-brown-dark transition-colors hover:border-[#E93354] hover:text-[#E93354]"

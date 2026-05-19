@@ -2,6 +2,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const contactBlocks = [
   {
@@ -31,6 +32,15 @@ const contactBlocks = [
 ];
 
 const Contact = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    toast({
+      title: "Enquiry Submitted",
+      description: "Thank you! We will get back to you shortly.",
+    });
+    (e.target as HTMLFormElement).reset();
+  };
+
   return (
     <div className="overflow-hidden bg-gradient-to-b from-cream via-background to-beige/40">
       <section className="px-4 pb-14 pt-16 md:pt-24">
@@ -88,7 +98,7 @@ const Contact = () => {
           </AnimatedSection>
 
           <AnimatedSection animation="slide-right" delay={140}>
-            <form className="rounded-[1.8rem] border border-brown-warm/15 bg-white p-7 shadow-[var(--shadow-soft)] md:p-9">
+            <form onSubmit={handleSubmit} className="rounded-[1.8rem] border border-brown-warm/15 bg-white p-7 shadow-[var(--shadow-soft)] md:p-9">
               <h3 className="font-lilita text-3xl text-brown-dark font-bold">Send an Enquiry</h3>
               <p className="mt-2 text-brown-dark/70">Tell us what you need and our team will contact you shortly.</p>
 

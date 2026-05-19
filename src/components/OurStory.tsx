@@ -45,12 +45,13 @@ export const OurStory = () => {
                 <span className="text-[#E93354]">To Every Home.</span>
               </h2>
               <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                Our purpose is to cultivate trust and deliver endless joy to our Honey Gold family of consumers
-                and employees through nutritious treats.
+                At Honey Gold Bakers, our journey began with a simple Indian belief — good food brings families together. What started as a passion for fresh baking and authentic taste has grown into a trusted bakery brand serving happiness in every bite.
               </p>
               <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
-                Since 1995, we have successfully leveraged our established brand presence, strategic supply chain,
-                diversified product portfolio and consequent value proposition for consumers to reach maximum households.
+                Inspired by traditional Indian flavors and modern baking standards, we craft breads, buns, rusks, cakes, biscuits, and bakery delights using quality ingredients and hygienic processes. Every product is made with care, keeping freshness, purity, and taste at the heart of everything we do.
+              </p>
+              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+                From morning chai with crispy rusks to celebrations made sweeter...
               </p>
 
               <Button asChild variant="outline" size="lg" className="w-fit rounded-full border-brown-warm/40 bg-white group">

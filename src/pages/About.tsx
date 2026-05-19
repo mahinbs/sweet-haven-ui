@@ -1,6 +1,7 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import {
   CheckCircle2,
   HeartHandshake,
@@ -71,9 +72,11 @@ const About = () => {
               A modern bakery manufacturing company producing high-quality, hygienic, and delicious baked goods.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button className="rounded-full px-8">Explore Products</Button>
-              <Button variant="outline" className="rounded-full border-brown-warm px-8 text-brown-dark">
-                Contact Sales
+              <Button asChild className="rounded-full px-8">
+                <Link to="/products">Explore Products</Link>
+              </Button>
+              <Button asChild variant="outline" className="rounded-full border-brown-warm px-8 text-brown-dark">
+                <Link to="/contact">Contact Sales</Link>
               </Button>
             </div>
           </AnimatedSection>
@@ -233,8 +236,8 @@ const About = () => {
             Connect with us for distribution, wholesale orders, and consistent quality delivery.
           </p>
           <div className="mt-8">
-            <Button size="lg" className="rounded-full px-10">
-              Partner With Us
+            <Button asChild size="lg" className="rounded-full px-10">
+              <Link to="/contact">Partner With Us</Link>
             </Button>
           </div>
         </AnimatedSection>

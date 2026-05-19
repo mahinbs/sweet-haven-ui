@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const slides = [
   {
     id: 1,
-    eyebrow: "Since 1995",
+    eyebrow: "Honey Gold – Where Happiness Unfolds",
     title: "From Our Bakery",
     titleAccent: "To Your Table.",
     subtitle:
@@ -18,7 +18,7 @@ const slides = [
   },
   {
     id: 2,
-    eyebrow: "Premium Quality",
+    eyebrow: "Honey Gold – Where Happiness Unfolds",
     title: "Every Treat Baked",
     titleAccent: "With Love.",
     subtitle:
@@ -29,7 +29,7 @@ const slides = [
   },
   {
     id: 3,
-    eyebrow: "Nationwide Reach",
+    eyebrow: "Honey Gold – Where Happiness Unfolds",
     title: "Freshness You Can",
     titleAccent: "Count On.",
     subtitle:
@@ -42,7 +42,7 @@ const slides = [
 
 export const Hero = () => {
   const autoplay = Autoplay({ delay: 5000, stopOnInteraction: false });
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [autoplay]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" }, [autoplay]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const onSelect = useCallback(() => {
@@ -62,14 +62,14 @@ export const Hero = () => {
   );
 
   return (
-    <section className="relative h-[90vh] min-h-[600px] max-h-[860px] overflow-hidden">
+    <section className="relative h-[80vh] sm:h-[90vh] min-h-[500px] sm:min-h-[600px] max-h-[860px] w-full overflow-hidden">
       {/* Embla Viewport */}
-      <div ref={emblaRef} className="h-full overflow-hidden">
+      <div ref={emblaRef} className="w-full h-full overflow-hidden">
         <div className="flex h-full">
           {slides.map((slide) => (
             <div
               key={slide.id}
-              className="relative min-w-full h-full flex-shrink-0"
+              className="relative w-full min-w-0 flex-[0_0_100%] h-full flex-shrink-0"
             >
               {/* Background */}
               <div
@@ -86,31 +86,31 @@ export const Hero = () => {
               {/* Content */}
               <div className="relative h-full flex items-center px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
                 <div className="max-w-2xl">
-                  <p className="text-[#E93354] text-xs uppercase tracking-[0.35em] font-medium mb-5 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "both" }}>
+                  <p className="text-[#E93354] text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.35em] font-medium mb-3 sm:mb-5 animate-fade-in" style={{ animationDelay: "0.1s", animationFillMode: "both" }}>
                     {slide.eyebrow}
                   </p>
 
-                  <h1 className="font-lilita font-extrabold text-white text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.0] mb-6 animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "both" }}>
+                  <h1 className="font-lilita font-extrabold text-white text-3xl sm:text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.1] sm:leading-[1.0] mb-4 sm:mb-6 animate-fade-in" style={{ animationDelay: "0.2s", animationFillMode: "both" }}>
                     {slide.title}
                     <br />
                     <span className="text-[#E93354]">{slide.titleAccent}</span>
                   </h1>
 
-                  <p className="text-white/80 text-lg md:text-xl leading-relaxed mb-8 max-w-xl animate-fade-in" style={{ animationDelay: "0.4s", animationFillMode: "both" }}>
+                  <p className="text-white/80 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-6 sm:mb-8 max-w-xl animate-fade-in" style={{ animationDelay: "0.4s", animationFillMode: "both" }}>
                     {slide.subtitle}
                   </p>
 
-                  <div className="flex flex-wrap items-center gap-4 animate-fade-in" style={{ animationDelay: "0.6s", animationFillMode: "both" }}>
+                  <div className="flex flex-wrap items-center gap-3 sm:gap-4 animate-fade-in" style={{ animationDelay: "0.6s", animationFillMode: "both" }}>
                     <Link
                       to={slide.cta.href}
-                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold text-sm tracking-wide bg-[#E93354] transition-all duration-300 hover:gap-3 hover:scale-105 hover:shadow-xl hover:shadow-[#E93354]/30"
+                      className="inline-flex items-center gap-2 px-5 py-3 sm:px-7 sm:py-3.5 rounded-full text-white font-semibold text-xs sm:text-sm tracking-wide bg-[#E93354] transition-all duration-300 hover:gap-3 hover:scale-105 hover:shadow-xl hover:shadow-[#E93354]/30"
                     >
                       {slide.cta.label}
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                     <Link
                       to={slide.ctaSecondary.href}
-                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold text-sm tracking-wide border border-white/40 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/70"
+                      className="inline-flex items-center gap-2 px-5 py-3 sm:px-7 sm:py-3.5 rounded-full text-white font-semibold text-xs sm:text-sm tracking-wide border border-white/40 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/70"
                     >
                       {slide.ctaSecondary.label}
                     </Link>

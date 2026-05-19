@@ -59,8 +59,8 @@ export const Testimonials = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="border-brown-warm/30 bg-white text-brown-dark" />
-            <CarouselNext className="border-brown-warm/30 bg-white text-brown-dark" />
+            <CarouselPrevious className="hidden border-brown-warm/30 bg-white text-brown-dark md:flex" />
+            <CarouselNext className="hidden border-brown-warm/30 bg-white text-brown-dark md:flex" />
           </Carousel>
         </AnimatedSection>
       </div>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
   name: string;
@@ -23,6 +24,12 @@ export const ProductCard = ({ name, price, image }: ProductCardProps) => {
         <Button
           variant="outline"
           className="w-full rounded-full border-brown-warm/40 bg-white transition-colors group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground"
+          onClick={() =>
+            toast({
+              title: "Enquiry Added",
+              description: `Added "${name}" to your enquiry list.`,
+            })
+          }
         >
           <ShoppingCart className="mr-2 h-4 w-4" />
           Add to Enquiry
