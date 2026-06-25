@@ -392,7 +392,7 @@ export const CareersPage = () => {
                     required
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="e.g. +91 98765 43210"
+                    placeholder="e.g. 9876543210"
                     className="w-full rounded-2xl border border-[#E8D8C6] px-4 py-3 text-sm focus:border-[#E93354] focus:outline-none focus:ring-1 focus:ring-[#E93354]"
                   />
                 </div>

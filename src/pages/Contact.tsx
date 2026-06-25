@@ -7,26 +7,26 @@ import { toast } from "@/hooks/use-toast";
 const contactBlocks = [
   {
     title: "Call Us",
-    value: "+91 98765 43210",
+    value: "18008898750",
     caption: "Sales & support",
     icon: Phone,
   },
   {
     title: "Email",
-    value: "hello@honeygoldbakers.com",
+    value: "Contactus@honeygoldbakers.com",
     caption: "Business enquiries",
     icon: Mail,
   },
   {
     title: "Visit Factory",
-    value: "Industrial Area, Jaipur",
-    caption: "Monday to Saturday",
+    value: "Mathura Rd, Aligarh, Uttar Pradesh 202002",
+    caption: "All 7 days",
     icon: MapPin,
   },
   {
     title: "Working Hours",
     value: "9:00 AM - 7:00 PM",
-    caption: "Sunday by appointment",
+    caption: "All 7 days",
     icon: Clock3,
   },
 ];
@@ -64,12 +64,14 @@ const Contact = () => {
             const Icon = block.icon;
             return (
               <AnimatedSection key={block.title} animation="zoom" delay={index * 90}>
-                <article className="h-full rounded-[1.5rem] border border-brown-warm/15 bg-white p-6 shadow-[var(--shadow-soft)]">
+                <article className="h-full min-w-0 overflow-hidden rounded-[1.5rem] border border-brown-warm/15 bg-white p-6 shadow-[var(--shadow-soft)]">
                   <span className="inline-flex rounded-2xl bg-pink-light p-3 text-brown-dark">
                     <Icon className="h-5 w-5" />
                   </span>
                   <p className="mt-4 text-xs uppercase tracking-[0.16em] text-brown-dark/60">{block.title}</p>
-                  <p className="mt-2 text-lg font-semibold text-brown-dark">{block.value}</p>
+                  <p className="mt-2 break-words text-base font-semibold leading-snug text-brown-dark sm:text-lg">
+                    {block.value}
+                  </p>
                   <p className="mt-1 text-sm text-brown-dark/70">{block.caption}</p>
                 </article>
               </AnimatedSection>

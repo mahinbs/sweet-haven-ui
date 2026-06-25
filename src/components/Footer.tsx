@@ -90,16 +90,16 @@ export const Footer = () => {
         <div className="mx-auto max-w-7xl px-6 py-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex flex-wrap gap-6">
-              <a href="tel:+91+919876543210" className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200">
+              <a href="tel:18008898750" className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200">
                 <Phone className="h-4 w-4 text-[#E93354]" />
-                +919876543210
+                18008898750
               </a>
               <a href="mailto:contactus@honeygoldbakers.com" className="flex items-center gap-2 text-white/50 hover:text-white text-sm transition-colors duration-200">
                 <Mail className="h-4 w-4 text-[#E93354]" />
                 contactus@honeygoldbakers.com
               </a>
               <span className="flex items-center gap-2 text-white/50 text-sm">
-                <MapPin className="h-4 w-4 text-[#E93354]" />Aligarh, Uttar Pradesh
+                <MapPin className="h-4 w-4 text-[#E93354]" />Mathura Rd, Aligarh, Uttar Pradesh 202002
               </span>
             </div>
           </div>
