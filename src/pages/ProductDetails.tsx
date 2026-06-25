@@ -1,21 +1,40 @@
 import { Link, Navigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, BadgeCheck, Sparkles, Truck } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { allProducts } from "@/data/products";
+import { fetchProductById, fetchProducts } from "@/services/products";
 import { toast } from "@/hooks/use-toast";
 
 const ProductDetails = () => {
   const { productId } = useParams<{ productId: string }>();
-  const product = allProducts.find((item) => item.id === productId);
+
+  const { data: product, isLoading } = useQuery({
+    queryKey: ["product", productId],
+    queryFn: () => fetchProductById(productId!),
+    enabled: Boolean(productId),
+  });
+
+  const { data: allProducts = [] } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center">
+        <p className="text-brown-dark/60">Loading product...</p>
+      </div>
+    );
+  }
 
   if (!product) {
     return <Navigate to="/not-found" replace />;
   }
 
   const relatedProducts = allProducts
-    .filter((item) => item.categorySlug === product.categorySlug && item.id !== product.id)
+    .filter((item) => item.category_id === product.category_id && item.id !== product.id)
     .slice(0, 4);
 
   return (
@@ -42,7 +61,7 @@ const ProductDetails = () => {
 
           <AnimatedSection animation="slide-right" delay={120} className="space-y-6">
             <span className="inline-flex rounded-full bg-pink-light px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brown-dark">
-              {product.categoryTitle}
+              {product.category?.title}
             </span>
             <h1 className="font-lilita text-4xl text-brown-dark md:text-6xl font-extrabold">{product.name}</h1>
             <p className="text-lg text-brown-dark/80">{product.description}</p>

@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { ArrowUpDown, Search, SlidersHorizontal } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { Footer } from "@/components/Footer";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { allProducts, productCategories } from "@/data/products";
+import { fetchCategories } from "@/services/categories";
+import { fetchProducts } from "@/services/products";
 
 type SortOption = "featured" | "price-asc" | "price-desc" | "name-asc";
 
@@ -19,7 +21,32 @@ const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("featured");
-  const validCategoryValues = useMemo(() => new Set(productCategories.map((category) => category.value)), []);
+
+  const { data: allProducts = [], isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+  });
+
+  const { data: categories = [] } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
+  const productCategories = useMemo(
+    () => [
+      { label: "All Categories", value: "all" },
+      ...categories.map((category) => ({
+        label: category.title,
+        value: category.slug,
+      })),
+    ],
+    [categories],
+  );
+
+  const validCategoryValues = useMemo(
+    () => new Set(productCategories.map((category) => category.value)),
+    [productCategories],
+  );
   const categoryFromQuery = searchParams.get("category") ?? "all";
   const activeCategory = validCategoryValues.has(categoryFromQuery) ? categoryFromQuery : "all";
 
@@ -39,7 +66,8 @@ const Products = () => {
     const normalizedQuery = searchTerm.trim().toLowerCase();
 
     const filtered = allProducts.filter((product) => {
-      const categoryMatch = activeCategory === "all" || product.categorySlug === activeCategory;
+      const categoryMatch =
+        activeCategory === "all" || product.category?.slug === activeCategory;
       const queryMatch =
         normalizedQuery.length === 0 ||
         product.name.toLowerCase().includes(normalizedQuery) ||
@@ -49,17 +77,17 @@ const Products = () => {
     });
 
     if (sortBy === "featured") {
-      return filtered;
+      return [...filtered].sort((a, b) => Number(b.featured) - Number(a.featured));
     }
 
     const sorted = [...filtered];
 
     if (sortBy === "price-asc") {
-      sorted.sort((a, b) => a.priceValue - b.priceValue);
+      sorted.sort((a, b) => a.price_value - b.price_value);
     }
 
     if (sortBy === "price-desc") {
-      sorted.sort((a, b) => b.priceValue - a.priceValue);
+      sorted.sort((a, b) => b.price_value - a.price_value);
     }
 
     if (sortBy === "name-asc") {
@@ -67,7 +95,7 @@ const Products = () => {
     }
 
     return sorted;
-  }, [activeCategory, searchTerm, sortBy]);
+  }, [activeCategory, searchTerm, sortBy, allProducts]);
 
   return (
     <div className="overflow-hidden bg-gradient-to-b from-cream via-background to-beige/40">
@@ -142,7 +170,9 @@ const Products = () => {
 
       <section className="px-4 pb-24">
         <div className="mx-auto max-w-7xl">
-          {filteredProducts.length === 0 ? (
+          {isLoading ? (
+            <p className="py-12 text-center text-brown-dark/60">Loading products...</p>
+          ) : filteredProducts.length === 0 ? (
             <AnimatedSection animation="fade" className="rounded-[1.6rem] border border-dashed border-brown-warm/35 bg-white/80 p-10 text-center shadow-[var(--shadow-soft)]">
               <h2 className="font-lilita text-3xl text-brown-dark font-bold">No products found</h2>
               <p className="mt-2 text-brown-dark/70">Try changing your search, category, or sort preferences.</p>
@@ -159,7 +189,7 @@ const Products = () => {
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <span className="absolute left-3 top-3 rounded-full bg-black/70 px-3 py-1 text-xs text-white">
-                        {product.categoryTitle}
+                        {product.category?.title}
                       </span>
                     </div>
                     <div className="flex flex-1 flex-col p-5">

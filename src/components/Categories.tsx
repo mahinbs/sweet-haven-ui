@@ -1,70 +1,22 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { AnimatedSection } from "./AnimatedSection";
-
-const productCategories = [
-  {
-    slug: "biscuits",
-    title: "Crunchy Biscuits",
-    label: "BISCUITS",
-    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80",
-    href: "/products?category=biscuits",
-  },
-  {
-    slug: "cakes",
-    title: "Cakealicious Cakes",
-    label: "CAKES",
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
-    href: "/products?category=cakes",
-  },
-  {
-    slug: "cookies",
-    title: "Droolworthy Cookies",
-    label: "COOKIES",
-    image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&q=80",
-    href: "/products?category=cookies",
-  },
-  {
-    slug: "rusks",
-    title: "Crispy Rusks",
-    label: "RUSKS",
-    image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=80",
-    href: "/products?category=rusks",
-  },
-  {
-    slug: "wafers",
-    title: "Waferific Wafers",
-    label: "WAFERS",
-    image: "https://images.unsplash.com/photo-1619221882220-947b3d3c8861?w=800&q=80",
-    href: "/products?category=wafers",
-  },
-  {
-    slug: "bread",
-    title: "Artisan Breads",
-    label: "BREADS",
-    image: "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=800&q=80",
-    href: "/products?category=bread",
-  },
-];
+import { fetchHomepageCategories } from "@/services/categories";
 
 const CategoryBlock = ({
-  slug,
   title,
   label,
   image,
   href,
   delay,
 }: {
-  slug: string;
   title: string;
   label: string;
   image: string;
   href: string;
   delay: number;
 }) => {
-  const isLocal = image.startsWith("@/") || image.startsWith("./") || image.startsWith("/");
-  const imgSrc = isLocal ? image.replace("@/assets/", "/src/assets/") : image;
-
   return (
     <AnimatedSection animation="zoom" delay={delay} className="h-full">
       <Link
@@ -72,7 +24,7 @@ const CategoryBlock = ({
         className="group relative block h-64 lg:h-80 overflow-hidden rounded-2xl"
       >
         <img
-          src={imgSrc}
+          src={image}
           alt={title}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
@@ -81,11 +33,9 @@ const CategoryBlock = ({
               "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80";
           }}
         />
-        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
         <div className="absolute inset-0 bg-[#E93354]/0 transition-all duration-500 group-hover:bg-[#E93354]/15" />
 
-        {/* Bottom content */}
         <div className="absolute inset-x-0 bottom-0 p-6 flex items-end justify-between">
           <div>
             <p className="text-[#E93354] text-[10px] uppercase tracking-[0.3em] font-medium mb-1 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
@@ -105,7 +55,24 @@ const CategoryBlock = ({
 };
 
 export const Categories = () => {
-  const [first, ...rest] = productCategories;
+  const { data: categories = [], isLoading } = useQuery({
+    queryKey: ["categories", "homepage"],
+    queryFn: fetchHomepageCategories,
+  });
+
+  const [first, ...rest] = categories;
+
+  if (isLoading) {
+    return (
+      <section className="bg-[#0f0f12] px-4 py-24">
+        <div className="mx-auto max-w-7xl text-center text-white/60">Loading categories...</div>
+      </section>
+    );
+  }
+
+  if (categories.length === 0) {
+    return null;
+  }
 
   return (
     <section className="bg-[#0f0f12] px-4 py-24">
@@ -131,17 +98,15 @@ export const Categories = () => {
           </div>
         </AnimatedSection>
 
-        {/* Featured large card + 2-col grid */}
         <div className="grid gap-4 lg:grid-cols-3">
-          {/* Large featured card */}
           <div className="lg:col-span-1">
             <AnimatedSection animation="slide-left" delay={0} className="h-full">
               <Link
-                to={first.href}
+                to={`/collections/${first.slug}`}
                 className="group relative flex h-80 lg:h-full min-h-[420px] overflow-hidden rounded-2xl"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80"
+                  src={first.image}
                   alt={first.title}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
@@ -152,7 +117,7 @@ export const Categories = () => {
                 <div className="absolute inset-x-0 bottom-0 p-7 flex items-end justify-between">
                   <div>
                     <p className="text-[#E93354] text-[10px] uppercase tracking-[0.3em] font-medium mb-2 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                      {first.label}
+                      {first.label ?? first.title.toUpperCase()}
                     </p>
                     <h3 className="font-lilita text-3xl font-bold text-white">
                       {first.title}
@@ -166,12 +131,14 @@ export const Categories = () => {
             </AnimatedSection>
           </div>
 
-          {/* 2x2 grid for the rest */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {rest.map((cat, i) => (
               <CategoryBlock
-                key={cat.slug}
-                {...cat}
+                key={cat.id}
+                title={cat.title}
+                label={cat.label ?? cat.title.toUpperCase()}
+                image={cat.image}
+                href={`/collections/${cat.slug}`}
                 delay={(i + 1) * 80}
               />
             ))}

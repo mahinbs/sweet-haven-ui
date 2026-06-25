@@ -3,6 +3,9 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchJobs } from "@/services/jobs";
+import { submitApplication, uploadResume } from "@/services/applications";
 import { 
   Briefcase, 
   Mail, 
@@ -17,74 +20,14 @@ import {
   UploadCloud
 } from "lucide-react";
 
-interface Job {
-  id: string;
-  title: string;
-  department: string;
-  location: string;
-  type: string;
-  description: string;
-  requirements: string[];
-}
-
-const jobsList: Job[] = [
-  {
-    id: "pastry-chef",
-    title: "Master Pastry Chef",
-    department: "Kitchen Operations",
-    location: "Aligarh Facility",
-    type: "Full-Time",
-    description: "Lead our creative pastry division to conceptualize, design, and produce premium cakes, croissants, and celebration sweets. Ensure high quality, sanitation, and consistency.",
-    requirements: [
-      "5+ years of experience in high-end commercial baking or pastry arts.",
-      "In-depth knowledge of French pastry techniques and Indian fusion flavors.",
-      "Strong leadership and kitchen management skills."
-    ]
-  },
-  {
-    id: "qa-executive",
-    title: "Quality Assurance Executive",
-    department: "Plant Operations",
-    location: "Aligarh Facility",
-    type: "Full-Time",
-    description: "Monitor and evaluate all raw ingredients, production line processes, and packaging standards to guarantee our safety, hygiene, and taste benchmarks are met at all times.",
-    requirements: [
-      "Degree in Food Science, Microbiology, or related field.",
-      "Familiarity with ISO, HACCP, and FSSAI guidelines.",
-      "High attention to detail and rigorous auditing skills."
-    ]
-  },
-  {
-    id: "sales-manager",
-    title: "Territory Sales Manager",
-    department: "Sales & Distribution",
-    location: "Western UP Region",
-    type: "Full-Time",
-    description: "Grow Honey Gold's retail footprint and wholesale distribution channels. Strengthen relationships with local distributors, grocery chains, and key wholesale partners.",
-    requirements: [
-      "3+ years of experience in FMCG or food product sales.",
-      "Strong negotiation, communication, and regional market network.",
-      "Willingness to travel locally within the territory."
-    ]
-  },
-  {
-    id: "cake-decorator",
-    title: "Cake Decorator & Artist",
-    department: "Custom Celebrations",
-    location: "Aligarh Facility",
-    type: "Full-Time",
-    description: "Design and execute beautiful, intricate custom cakes for birthdays, weddings, and special events using fondant, buttercream, and modern decorating mediums.",
-    requirements: [
-      "Proven portfolio of custom cake designs and sugarcraft.",
-      "Experience working with fondant, sculpting, and colors.",
-      "Ability to work efficiently under tight delivery deadlines."
-    ]
-  }
-];
-
 export const CareersPage = () => {
   const { toast } = useToast();
   const formRef = useRef<HTMLDivElement>(null);
+
+  const { data: jobsList = [], isLoading: jobsLoading } = useQuery({
+    queryKey: ["jobs"],
+    queryFn: () => fetchJobs(true),
+  });
   
   const [formData, setFormData] = useState({
     name: "",
@@ -108,7 +51,7 @@ export const CareersPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!resumeFile && !formData.resumeLink.trim()) {
@@ -121,9 +64,26 @@ export const CareersPage = () => {
     }
 
     setIsSubmitting(true);
-    
-    // Simulate API request
-    setTimeout(() => {
+
+    try {
+      let resumeUrl: string | null = null;
+      if (resumeFile) {
+        resumeUrl = await uploadResume(resumeFile);
+      }
+
+      const matchedJob = jobsList.find((j) => j.title === formData.position);
+
+      await submitApplication({
+        job_id: matchedJob?.id ?? null,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        position: formData.position,
+        message: formData.message,
+        resume_url: resumeUrl,
+        resume_link: formData.resumeLink.trim() || null,
+      });
+
       toast({
         title: "Application Submitted Successfully!",
         description: `Thank you, ${formData.name}! Our HR team will review your application for the ${formData.position} position.`,
@@ -137,8 +97,15 @@ export const CareersPage = () => {
         resumeLink: ""
       });
       setResumeFile(null);
+    } catch (err) {
+      toast({
+        title: "Submission Failed",
+        description: err instanceof Error ? err.message : "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -265,7 +232,12 @@ export const CareersPage = () => {
           </div>
 
           <div className="space-y-6">
-            {jobsList.map((job) => (
+            {jobsLoading ? (
+              <p className="text-center text-[#6C5A4A]">Loading positions...</p>
+            ) : jobsList.length === 0 ? (
+              <p className="text-center text-[#6C5A4A]">No open positions at the moment. Check back soon!</p>
+            ) : (
+              jobsList.map((job) => (
               <AnimatedSection key={job.id} animation="slide-up">
                 <div className="group rounded-3xl border border-[#F0E5D8] bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#F0E5D8]/60 pb-4">
@@ -305,7 +277,8 @@ export const CareersPage = () => {
                   </div>
                 </div>
               </AnimatedSection>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
