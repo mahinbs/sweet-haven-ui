@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
+const FACTORY_MAPS_URL =
+  "https://www.google.com/maps/place/HONEY+GOLD+BAKERS+PRIVATE+LIMITED/@27.8210697,78.0294566,18z/data=!4m6!3m5!1s0x3974a39eabdd1791:0x91eaafb2667bf0a1!8m2!3d27.820843!4d78.0291565!16s%2Fg%2F11yd1vqf9h?entry=ttu&g_ep=EgoyMDI2MDYyMy4wIKXMDSoASAFQAw%3D%3D";
+
 const contactBlocks = [
   {
     title: "Call Us",
@@ -22,6 +25,7 @@ const contactBlocks = [
     value: "Mathura Rd, Aligarh, Uttar Pradesh 202002",
     caption: "All 7 days",
     icon: MapPin,
+    href: FACTORY_MAPS_URL,
   },
   {
     title: "Working Hours",
@@ -30,6 +34,12 @@ const contactBlocks = [
     icon: Clock3,
   },
 ];
+
+const cardClassName =
+  "block h-full min-w-0 overflow-hidden rounded-[1.5rem] border border-brown-warm/15 bg-white p-6 shadow-[var(--shadow-soft)]";
+
+const cardLinkClassName =
+  `${cardClassName} transition-all duration-200 hover:-translate-y-0.5 hover:border-[#E93354]/40 hover:shadow-[var(--shadow-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E93354]`;
 
 const Contact = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -62,18 +72,34 @@ const Contact = () => {
         <div className="mx-auto grid max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {contactBlocks.map((block, index) => {
             const Icon = block.icon;
+            const content = (
+              <>
+                <span className="inline-flex rounded-2xl bg-pink-light p-3 text-brown-dark">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <p className="mt-4 text-xs uppercase tracking-[0.16em] text-brown-dark/60">{block.title}</p>
+                <p className="mt-2 break-words text-base font-semibold leading-snug text-brown-dark sm:text-lg">
+                  {block.value}
+                </p>
+                <p className="mt-1 text-sm text-brown-dark/70">{block.caption}</p>
+              </>
+            );
+
             return (
               <AnimatedSection key={block.title} animation="zoom" delay={index * 90}>
-                <article className="h-full min-w-0 overflow-hidden rounded-[1.5rem] border border-brown-warm/15 bg-white p-6 shadow-[var(--shadow-soft)]">
-                  <span className="inline-flex rounded-2xl bg-pink-light p-3 text-brown-dark">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <p className="mt-4 text-xs uppercase tracking-[0.16em] text-brown-dark/60">{block.title}</p>
-                  <p className="mt-2 break-words text-base font-semibold leading-snug text-brown-dark sm:text-lg">
-                    {block.value}
-                  </p>
-                  <p className="mt-1 text-sm text-brown-dark/70">{block.caption}</p>
-                </article>
+                {"href" in block && block.href ? (
+                  <a
+                    href={block.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cardLinkClassName}
+                    aria-label={`Open ${block.title} location in Google Maps`}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <article className={cardClassName}>{content}</article>
+                )}
               </AnimatedSection>
             );
           })}
