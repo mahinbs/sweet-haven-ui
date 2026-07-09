@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Loader2, Pencil, Plus, Trash2, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,6 +19,7 @@ import {
   deleteCategory,
   fetchCategories,
   updateCategory,
+  uploadCollectionImage,
 } from "@/services/categories";
 import type { Category } from "@/types/database";
 
@@ -44,6 +45,32 @@ export default function AdminCollections() {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Category | null>(null);
   const [form, setForm] = useState(emptyForm);
+  const [uploading, setUploading] = useState(false);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const url = await uploadCollectionImage(file);
+      setForm((prev) => ({ ...prev, image: url }));
+      toast({
+        title: "Success",
+        description: "Image uploaded successfully from device.",
+      });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "An error occurred while uploading.";
+      toast({
+        title: "Upload failed",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
+      setUploading(false);
+      e.target.value = "";
+    }
+  };
 
   const saveMutation = useMutation({
     mutationFn: async () => {
@@ -114,6 +141,7 @@ export default function AdminCollections() {
     setOpen(false);
     setEditing(null);
     setForm(emptyForm);
+    setUploading(false);
   };
 
   return (
@@ -227,12 +255,63 @@ export default function AdminCollections() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label>Image URL</Label>
-              <Input
-                required
-                value={form.image}
-                onChange={(e) => setForm({ ...form, image: e.target.value })}
-              />
+              <Label>Collection Image</Label>
+              <div className="flex flex-col gap-3 rounded-lg border border-dashed border-slate-200 p-4">
+                {form.image && (
+                  <div className="relative aspect-video w-full overflow-hidden rounded-lg border bg-slate-50">
+                    <img src={form.image} alt="Preview" className="h-full w-full object-contain" />
+                    <button
+                      type="button"
+                      onClick={() => setForm({ ...form, image: "" })}
+                      className="absolute right-2 top-2 rounded-full bg-red-500 p-1.5 text-white hover:bg-red-600 focus:outline-none"
+                      title="Remove image"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
+                <div className="flex items-center gap-3">
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    id="image-upload"
+                    onChange={handleImageUpload}
+                    disabled={uploading}
+                  />
+                  <Label
+                    htmlFor="image-upload"
+                    className="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+                  >
+                    {uploading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin text-[#E93354]" />
+                        <span>Uploading image...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="h-4 w-4 text-[#E93354]" />
+                        <span>Upload image from device</span>
+                      </>
+                    )}
+                  </Label>
+                </div>
+                <div className="relative flex items-center justify-center py-1">
+                  <span className="bg-white px-2 text-xs text-slate-400">OR</span>
+                  <div className="absolute inset-0 -z-10 flex items-center">
+                    <div className="w-full border-t border-slate-100" />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs text-slate-500">Or paste a direct image URL:</span>
+                  <Input
+                    required
+                    placeholder="https://example.com/image.jpg"
+                    value={form.image}
+                    onChange={(e) => setForm({ ...form, image: e.target.value })}
+                  />
+                </div>
+              </div>
             </div>
             <div className="space-y-2">
               <Label>Headline</Label>
@@ -266,8 +345,8 @@ export default function AdminCollections() {
               />
               <Label>Show on homepage</Label>
             </div>
-            <Button type="submit" disabled={saveMutation.isPending} className="w-full bg-[#E93354] hover:bg-[#c72944]">
-              {saveMutation.isPending ? "Saving..." : editing ? "Update Collection" : "Create Collection"}
+            <Button type="submit" disabled={saveMutation.isPending || uploading} className="w-full bg-[#E93354] hover:bg-[#c72944]">
+              {saveMutation.isPending ? "Saving..." : uploading ? "Uploading image..." : editing ? "Update Collection" : "Create Collection"}
             </Button>
           </form>
         </DialogContent>

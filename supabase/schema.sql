@@ -173,6 +173,40 @@ CREATE POLICY "Admins can delete resumes"
   ON storage.objects FOR DELETE
   USING (bucket_id = 'resumes' AND is_admin());
 
+-- Storage bucket for product-images
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('product-images', 'product-images', true)
+ON CONFLICT (id) DO NOTHING;
+
+CREATE POLICY "Anyone can upload product-images"
+  ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'product-images');
+
+CREATE POLICY "Public can read product-images"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'product-images');
+
+CREATE POLICY "Admins can delete product-images"
+  ON storage.objects FOR DELETE
+  USING (bucket_id = 'product-images' AND is_admin());
+
+-- Storage bucket for collection-images
+INSERT INTO storage.buckets (id, name, public)
+VALUES ('collection-images', 'collection-images', true)
+ON CONFLICT (id) DO NOTHING;
+
+CREATE POLICY "Anyone can upload collection-images"
+  ON storage.objects FOR INSERT
+  WITH CHECK (bucket_id = 'collection-images');
+
+CREATE POLICY "Public can read collection-images"
+  ON storage.objects FOR SELECT
+  USING (bucket_id = 'collection-images');
+
+CREATE POLICY "Admins can delete collection-images"
+  ON storage.objects FOR DELETE
+  USING (bucket_id = 'collection-images' AND is_admin());
+
 -- Indexes
 CREATE INDEX IF NOT EXISTS products_category_id_idx ON products(category_id);
 CREATE INDEX IF NOT EXISTS products_featured_idx ON products(featured);

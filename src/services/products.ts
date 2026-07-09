@@ -67,6 +67,31 @@ export async function deleteProduct(id: string): Promise<void> {
   if (error) throw error;
 }
 
+export async function uploadProductImage(file: File): Promise<string> {
+  const maxSize = 5 * 1024 * 1024; // 5MB limit
+  if (file.size > maxSize) {
+    throw new Error("File size exceeds 5MB limit.");
+  }
+
+  const allowedExtensions = ["png", "jpg", "jpeg", "gif", "webp"];
+  const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+  if (!allowedExtensions.includes(ext)) {
+    throw new Error("Invalid file type. Only PNG, JPG, JPEG, GIF, and WEBP files are allowed.");
+  }
+
+  const path = `${crypto.randomUUID()}.${ext}`;
+  const { error } = await supabase.storage.from("product-images").upload(path, file, {
+    cacheControl: "3600",
+    upsert: false,
+  });
+
+  if (error) throw error;
+
+  const { data } = supabase.storage.from("product-images").getPublicUrl(path);
+  return data.publicUrl;
+}
+
+
 function normalizeProduct(row: Record<string, unknown>): ProductWithCategory {
   const { category, ...product } = row;
   return {
