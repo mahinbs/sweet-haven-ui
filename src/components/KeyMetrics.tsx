@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Cookie, CakeSlice, Globe2, PieChart, TrendingUp } from "lucide-react";
+import { Cookie, CakeSlice, Globe2 } from "lucide-react";
 
 const metrics = [
   {
@@ -19,20 +19,6 @@ const metrics = [
     value: 27,
     label: "Biscuit Varieties Exported",
     caption: "",
-  },
-  {
-    icon: PieChart,
-    value: 4,
-    suffix: "th",
-    label: "Largest Biscuit Brand",
-    caption: "*Revenue Report — Frost & Sullivan 2018",
-  },
-  {
-    icon: TrendingUp,
-    value: 5,
-    suffix: "th",
-    label: "Largest Cakes Brand",
-    caption: "*Revenue Report — Frost & Sullivan 2018",
   },
 ] as const;
 
@@ -100,7 +86,7 @@ export const KeyMetrics = () => {
         <h2 className="font-lilita text-4xl font-bold text-foreground md:text-5xl">Our Scale in Numbers</h2>
       </div>
       <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl border border-border/60 bg-white shadow-[var(--shadow-soft)]">
-        <div className="grid divide-y border-border/60 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-5 lg:divide-x">
+        <div className="grid divide-y border-border/60 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-3 lg:divide-x">
           {metrics.map((metric, index) => {
             const isComplete = hasAnimated && counts[index] === metric.value;
             const suffix = "suffix" in metric ? metric.suffix : undefined;

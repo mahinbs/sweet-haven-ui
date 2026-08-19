@@ -60,7 +60,7 @@ const About = () => {
   return (
     <div className="overflow-hidden bg-gradient-to-b from-cream via-background to-beige/40">
       <section className="relative px-4 pb-20 pt-16 md:pt-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
+        <div className="mx-auto max-w-7xl">
           <AnimatedSection animation="slide-left" className="space-y-6">
             <span className="inline-flex items-center rounded-full bg-pink-light px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-brown-dark">
               ABOUT US
@@ -68,7 +68,7 @@ const About = () => {
             <h1 className="font-lilita text-4xl leading-tight text-brown-dark md:text-6xl font-extrabold">
               Honey Gold Bakers Pvt. Ltd.
             </h1>
-            <p className="max-w-xl text-base text-brown-dark/80 md:text-lg">
+            <p className="max-w-3xl text-base text-brown-dark/80 md:text-lg">
               A modern bakery manufacturing company producing high-quality, hygienic, and delicious baked goods.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -78,29 +78,6 @@ const About = () => {
               <Button asChild variant="outline" className="rounded-full border-brown-warm px-8 text-brown-dark">
                 <Link to="/contact">Contact Sales</Link>
               </Button>
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection animation="zoom" delay={200}>
-            <div className="grid grid-cols-2 gap-4">
-              <img
-                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80"
-                alt="Pastries on display"
-                className="h-72 w-full rounded-[2rem] object-cover shadow-[var(--shadow-hover)] md:h-80"
-              />
-              <div className="space-y-4 pt-8">
-                <img
-                  src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=900&q=80"
-                  alt="Decorated celebration cake"
-                  className="h-40 w-full rounded-[1.6rem] object-cover shadow-[var(--shadow-soft)] md:h-44"
-                />
-                <div className="rounded-[1.6rem] bg-white p-6 shadow-[var(--shadow-soft)]">
-                  <p className="text-4xl font-semibold text-brown-dark">100%</p>
-                  <p className="mt-2 text-sm uppercase tracking-[0.16em] text-brown-dark/60">
-                    Quality-focused production
-                  </p>
-                </div>
-              </div>
             </div>
           </AnimatedSection>
         </div>
